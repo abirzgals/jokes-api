@@ -1,0 +1,15 @@
+.joke-card{
+  margin-top: 10px;
+  padding:10px;
+}
+.joke-content{
+  border: 1px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0px 5px 11px #cdcdcd;
+  padding: 5px;
+  background: #dbe7eb;
+  margin: 9px 0px 9px 0px;
+}
+h4{
+  margin: 14px 0;
+}

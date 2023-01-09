@@ -1,0 +1,88 @@
+<div class="container">
+<mat-grid-list cols="1" rowHeight="500px">
+  <mat-grid-tile>
+    <div class="example-container">
+
+      <mat-form-field appearance="fill" class="width-50">
+        <mat-label>Category</mat-label>
+        <mat-select [(ngModel)]="this.category" name="category" (change)="getJokes(filters)" multiple>
+          <mat-option *ngFor="let category of categories" [value]="category">
+            {{category}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="width-50 ml-2">
+        <mat-label>Language</mat-label>
+        <mat-select [(ngModel)]="filters.lang" name="language" (change)="getJokes(filters)">
+          <mat-option *ngFor="let language of languages" [value]="language">
+            {{language}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+
+
+      <mat-form-field  class="width-50">
+        <mat-label>Number of Jokes</mat-label>
+        <input matInput type="number" placeholder="Number of Jokes" value="1" min="1" max="10" [(ngModel)]="filters.amount" name="amount" (change)="getJokes(filters)">
+      </mat-form-field>
+
+      <br>
+      <mat-form-field appearance="fill" class="width-100">
+        <mat-label>Search string</mat-label>
+        <input matInput [(ngModel)]="filters.contains" name="contains">
+      </mat-form-field>
+      <br>
+      <section class="section">
+        <label>Select flags to blacklist: </label>
+        <br/>
+        <span class="list-section">
+        <mat-checkbox [(ngModel)]="blacklistFlags.nsfw">nsfw</mat-checkbox>
+        <mat-checkbox [(ngModel)]="blacklistFlags.religious">religious</mat-checkbox>
+        <mat-checkbox [(ngModel)]="blacklistFlags.political">political</mat-checkbox>
+        <mat-checkbox [(ngModel)]="blacklistFlags.racist">racist</mat-checkbox>
+        <mat-checkbox [(ngModel)]="blacklistFlags.sexist">sexist</mat-checkbox>
+        <mat-checkbox [(ngModel)]="blacklistFlags.explicit">explicit</mat-checkbox>
+        </span>
+      </section>
+
+      <section class="section">
+        <label>Select at least one joke type: </label>
+        <br/>
+        <span class="list-section">
+        <mat-checkbox [(ngModel)]="type.single">single</mat-checkbox>
+        <mat-checkbox [(ngModel)]="type.twopart">twopart</mat-checkbox>
+        </span>
+      </section>
+      <br><br>
+
+      <button mat-raised-button (click)="getJokes(filters)">Get Jokes</button>
+
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+</div>
+
+
+<div class="container jokes-list">
+  <br/>
+  <br/>
+  <br/>
+
+  <br/>
+  <br/>
+  <span *ngIf="errorMessage">{{errorMessage}}</span>
+
+  <ul *ngIf="!errorMessage">
+    <li *ngFor="let joke of jokes">
+      <app-joke
+        [joke]="joke"
+      ></app-joke>
+      <!--{{joke | json}}-->
+    </li>
+  </ul>
+</div>
+
+

@@ -1,0 +1,23 @@
+<mat-card class="joke-card">
+  <mat-card-header>
+    <mat-card-title>{{ joke.category }}</mat-card-title>
+    <mat-card-subtitle>Category: {{ joke.type }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+
+    <div class="joke-content">
+      <h4 *ngIf="joke.type=='single'">{{ joke.joke }}</h4>
+      <h4 *ngIf="joke.type=='twopart'">-{{ joke.setup }}</h4>
+      <h4 *ngIf="joke.type=='twopart'">-{{ joke.delivery }}</h4>
+    </div>
+    <div>ID: {{ joke.id }}</div>
+    <div>Language: {{ joke.lang }}</div>
+    <div>Safe: {{ joke.safe ? 'True' : 'False' }}</div>
+    <div>Flags:
+      <span *ngFor="let flag of blacklistFlags | keyvalue">{{ flag.key }}: {{ flag.value }} </span>
+    </div>
+  </mat-card-content>
+  <mat-card-footer>
+
+  </mat-card-footer>
+</mat-card>
